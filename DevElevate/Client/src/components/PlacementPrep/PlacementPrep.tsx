@@ -70,7 +70,6 @@ const PlacementPrep: React.FC = () => {
     }
   ];
 
- fix-my-change
   const interviewQuestions = [
     {
       category: 'Technical',
@@ -135,81 +134,6 @@ const PlacementPrep: React.FC = () => {
     }
   ];
 
-  const renderOpportunities = () => (
-    <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
-        <h3 className={`text-xl font-bold tracking-tight ${state.darkMode ? 'text-white' : 'text-gray-900'}`}>
-          Latest Job Opportunities
-        </h3>
-        <select className={`px-4 py-2 rounded-lg border text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2  ${
-          state.darkMode
-            ? 'bg-gray-800 border-gray-700 text-white focus:ring-gray-600'
-            : 'bg-white border-gray-300 text-gray-900 focus:ring-blue-300'
-        }`}>
-          <option>All Categories</option>
-          <option>Product Based</option>
-          <option>Mass Recruiter</option>
-          <option>Internship</option>
-        </select>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {jobOpportunities.map((job, index) => (
-          <div
-            key={index}
-            className={`p-6 rounded-2xl border shadow-sm hover:shadow-lg transition-all duration-200  ${state.darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} hover:shadow-md transition-shadow`}
-          >
-            <div className="flex justify-between items-start mb-3">
-              <div>
-                <h4 className={`text-lg font-semibold tracking-tight ${state.darkMode ? 'text-white' : 'text-gray-900'}`}>
-                  {job.position}
-                </h4>
-                <p className={`text-sm ${state.darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                  {job.company} • {job.location}
-                </p>
-              </div>
-              <span className={`px-2.5 py-1 rounded-full text-xs font-medium whitespace-nowrap ${
-                job.type === 'Internship'
-                  ? 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300'
-                  : 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300'
-              }`}>
-                {job.type}
-              </span>
-            </div>
-
-            <p className={`text-sm leading-relaxed mb-4 ${state.darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-              {job.description}
-            </p>
-
-            <div className="mb-4">
-              <h5 className={`text-sm font-semibold mb-2 ${state.darkMode ? 'text-gray-200' : 'text-gray-800'}`}>
-                Requirements:
-              </h5>
-              <ul className="text-sm space-y-1 pl-1">
-                {job.requirements.map((req, reqIndex) => (
-                  <li key={reqIndex} className={`flex items-start space-x-2 ${state.darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                    <div className="w-1 h-1 bg-current rounded-full shrink-0"></div>
-                    <span>{req}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="flex justify-between items-center mt-4">
-              <div>
-                <span className={`text-sm font-semibold ${state.darkMode ? 'text-green-400' : 'text-green-600'}`}>
-                  {job.salary}
-                </span>
-                <p className={`text-xs mt-1 ${state.darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                  Deadline: {job.deadline}
-                </p>
-              </div>
-              <button className="flex items-center space-x-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium transition-colors">
-                <ExternalLink className="w-4 h-4" />
-                <span>Apply</span>
-              </button>
-            </div>
-
   const renderOpportunities = () => {
     const filteredJobs = jobOpportunities.filter((job) => {
       const matchesCategory =
@@ -238,9 +162,9 @@ const PlacementPrep: React.FC = () => {
               onChange={(e) => setSelectedCategory(e.target.value)}
               className={`px-4 py-2 rounded-lg border ${
                 state.darkMode
-                  ? 'bg-gray-800 border-gray-700 text-white'
-                  : 'bg-white border-gray-300 text-gray-900'
-              }`}
+                  ? 'bg-gray-800 border-gray-700 text-white focus:ring-gray-600'
+                  : 'bg-white border-gray-300 text-gray-900 focus:ring-blue-300'
+              } text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2`}
             >
               <option>All Categories</option>
               <option>Product Based</option>
@@ -248,7 +172,7 @@ const PlacementPrep: React.FC = () => {
               <option>Internship</option>
             </select>
 
-            {/* Search Input with Emoji */}
+            {/* Search Input */}
             <div className="relative w-full sm:w-64">
               <input
                 type="text"
@@ -269,16 +193,87 @@ const PlacementPrep: React.FC = () => {
                 🔍
               </span>
             </div>
- main
           </div>
         </div>
 
-fix-my-change
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {filteredJobs.map((job, index) => (
+            <div
+              key={index}
+              className={`p-6 rounded-2xl border shadow-sm hover:shadow-lg transition-all duration-200 ${
+                state.darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
+              }`}
+            >
+              <div className="flex justify-between items-start mb-3">
+                <div>
+                  <h4 className={`text-lg font-semibold tracking-tight ${state.darkMode ? 'text-white' : 'text-gray-900'}`}>
+                    {job.position}
+                  </h4>
+                  <p className={`text-sm ${state.darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                    {job.company} • {job.location}
+                  </p>
+                </div>
+                <span className={`px-2.5 py-1 rounded-full text-xs font-medium whitespace-nowrap ${
+                  job.type === 'Internship'
+                    ? 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300'
+                    : 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300'
+                }`}>
+                  {job.type}
+                </span>
+              </div>
+
+              <p className={`text-sm leading-relaxed mb-4 ${state.darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                {job.description}
+              </p>
+
+              <div className="mb-4">
+                <h5 className={`text-sm font-semibold mb-2 ${state.darkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+                  Requirements:
+                </h5>
+                <ul className="text-sm space-y-1 pl-1">
+                  {job.requirements.map((req, reqIndex) => (
+                    <li key={reqIndex} className={`flex items-start space-x-2 ${state.darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                      <div className="w-1 h-1 bg-current rounded-full shrink-0 mt-2"></div>
+                      <span>{req}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="flex justify-between items-center mt-4">
+                <div>
+                  <span className={`text-sm font-semibold ${state.darkMode ? 'text-green-400' : 'text-green-600'}`}>
+                    {job.salary}
+                  </span>
+                  <p className={`text-xs mt-1 ${state.darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                    Deadline: {job.deadline}
+                  </p>
+                </div>
+                <button className="flex items-center space-x-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium rounded-lg transition-colors">
+                  <ExternalLink className="w-4 h-4" />
+                  <span>Apply</span>
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
+  const renderInterviews = () => (
+    <div className="space-y-6">
+      <h3 className={`text-xl font-semibold ${state.darkMode ? 'text-white' : 'text-gray-900'}`}>
+        Interview Preparation Questions
+      </h3>
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {interviewQuestions.map((category, index) => (
           <div
             key={index}
-            className={`p-6 rounded-2xl shadow-sm border transition-all hover:shadow-md ${state.darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`}
+            className={`p-6 rounded-2xl shadow-sm border transition-all hover:shadow-md ${
+              state.darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
+            }`}
           >
             <h4 className={`text-lg font-semibold mb-4 ${state.darkMode ? 'text-white' : 'text-gray-900'}`}>
               {category.category} Questions
@@ -289,15 +284,13 @@ fix-my-change
                   key={qIndex}
                   className={`p-3 rounded-lg ${state.darkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-50 text-gray-700'}`}
                 >
-                  <p className={`text-sm leading-relaxed${state.darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                  <p className={`text-sm leading-relaxed ${state.darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                     {question}
                   </p>
                 </div>
               ))}
             </div>
-            <button className="w-full mt-5 px-4 py-2 text-sm font-medium rounded-xl 
-    bg-blue-500 hover:bg-blue-600 text-white transition-colors 
-    focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2">
+            <button className="w-full mt-5 px-4 py-2 text-sm font-medium rounded-xl bg-blue-500 hover:bg-blue-600 text-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2">
               View All {category.category} Questions
             </button>
           </div>
@@ -316,7 +309,9 @@ fix-my-change
         {resources.map((resource, index) => (
           <div
             key={index}
-            className={`p-6 rounded-lg border  transform transition-all duration-200  ${state.darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} hover:shadow-lg transition-y-1`}
+            className={`p-6 rounded-lg border transform transition-all duration-200 hover:shadow-lg hover:-translate-y-1 ${
+              state.darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
+            }`}
           >
             <div className="flex items-start space-x-4">
               <div className="p-3 bg-blue-100 dark:bg-blue-900 rounded-lg">
@@ -330,9 +325,9 @@ fix-my-change
                   {resource.description}
                 </p>
                 <div className="flex items-center justify-between">
-                  <div className="flex flex-wrap items-center  gap-4 text-sm">
+                  <div className="flex flex-wrap items-center gap-4 text-sm">
                     <span className={`${state.darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                     📄 {resource.type} • {resource.size}
+                      📄 {resource.type} • {resource.size}
                     </span>
                     <span className={`${state.darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                       ⬇️ {resource.downloads} downloads
@@ -342,68 +337,9 @@ fix-my-change
                     <Download className="w-4 h-4" />
                     <span>Download</span>
                   </button>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {filteredJobs.map((job, index) => (
-            <div
-              key={index}
-              className={`p-6 rounded-lg border ${
-                state.darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
-              } hover:shadow-md transition-shadow`}
-            >
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                  <h4 className={`text-lg font-semibold ${state.darkMode ? 'text-white' : 'text-gray-900'}`}>
-                    {job.position}
-                  </h4>
-                  <p className={`text-sm ${state.darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                    {job.company} • {job.location}
-                  </p>
                 </div>
-                <span className={`px-2 py-1 rounded-full text-xs ${
-                  job.type === 'Internship'
-                    ? 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300'
-                    : 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300'
-                }`}>
-                  {job.type}
-                </span>
-              </div>
-
-              <p className={`text-sm mb-3 ${state.darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                {job.description}
-              </p>
-
-              <div className="mb-3">
-                <h5 className={`text-sm font-medium mb-2 ${state.darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                  Requirements:
-                </h5>
-                <ul className="text-sm space-y-1">
-                  {job.requirements.map((req, reqIndex) => (
-                    <li key={reqIndex} className={`flex items-center space-x-2 ${state.darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                      <div className="w-1 h-1 bg-current rounded-full"></div>
-                      <span>{req}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="flex justify-between items-center">
-                <div>
-                  <span className={`text-sm font-medium ${state.darkMode ? 'text-green-400' : 'text-green-600'}`}>
-                    {job.salary}
-                  </span>
-                  <p className={`text-xs ${state.darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                    Deadline: {job.deadline}
-                  </p>
- main
-                </div>
-                <button className="flex items-center space-x-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors">
-                  <ExternalLink className="w-4 h-4" />
-                  <span>Apply</span>
-                </button>
               </div>
             </div>
- fix-my-change
           </div>
         ))}
       </div>
@@ -417,7 +353,9 @@ fix-my-change
       </h3>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className={`p-6 rounded-2xl border shadow-sm transition-all duration-200 ${state.darkMode ? 'bg-gray-800 border-gray-700 hover:shadow-md' : 'bg-white border-gray-200 hover:shadow-lg'}`}>
+        <div className={`p-6 rounded-2xl border shadow-sm transition-all duration-200 ${
+          state.darkMode ? 'bg-gray-800 border-gray-700 hover:shadow-md' : 'bg-white border-gray-200 hover:shadow-lg'
+        }`}>
           <h4 className={`text-xl font-semibold mb-3 tracking-tight ${state.darkMode ? 'text-white' : 'text-gray-900'}`}>
             🤖 AI Mock Interview
           </h4>
@@ -439,12 +377,14 @@ fix-my-change
             </div>
           </div>
           <button className="w-full mt-2 px-4 py-2 bg-purple-500 hover:bg-purple-600 text-white rounded-lg transition-all duration-150">
-           🚀 Start AI Mock Interview
+            🚀 Start AI Mock Interview
           </button>
         </div>
 
-        <div className={`p-6 rounded-2xl border shadow-sm transition-all duration-200 ${state.darkMode ? 'bg-gray-800 border-gray-700 hover:shadow-md' : 'bg-white border-gray-200 hover:shadow-lg'}`}>
-          <h4 className={`text-sl font-semibold mb-3 tracking-tight ${state.darkMode ? 'text-white' : 'text-gray-900'}`}>
+        <div className={`p-6 rounded-2xl border shadow-sm transition-all duration-200 ${
+          state.darkMode ? 'bg-gray-800 border-gray-700 hover:shadow-md' : 'bg-white border-gray-200 hover:shadow-lg'
+        }`}>
+          <h4 className={`text-xl font-semibold mb-3 tracking-tight ${state.darkMode ? 'text-white' : 'text-gray-900'}`}>
             👥 Peer Mock Interview
           </h4>
           <p className={`text-sm mb-5 leading-relaxed ${state.darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -467,25 +407,17 @@ fix-my-change
           <button className="w-full mt-4 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg transition-all duration-150">
             Find Interview Partner
           </button>
-
-          ))}
- main
         </div>
       </div>
-    );
-  };
-
-  // Placeholder functions for the rest of the tabs (keep your original implementations)
-  const renderInterviews = () => <div>Interview Prep Content</div>;
-  const renderResources = () => <div>Resources Content</div>;
-  const renderMockInterviews = () => <div>Mock Interview Content</div>;
+    </div>
+  );
 
   return (
     <div className={`min-h-screen ${state.darkMode ? 'bg-gray-900' : 'bg-gradient-to-b from-sky-50 to-white'} transition-colors duration-300`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-10">
           <h1 className={`text-3xl font-bold ${state.darkMode ? 'text-white' : 'text-gray-900'} mb-2`}>
-           Placement Preparation Arena
+            Placement Preparation Arena
           </h1>
           <p className={`text-lg sm:text-xl ${state.darkMode ? 'text-gray-300' : 'text-gray-700'} max-w-3xl`}>
             Everything you need to ace your job interviews and land your dream job
@@ -518,16 +450,13 @@ fix-my-change
         </div>
 
         {/* Tab Content */}
-fix-my-change
-        <div className={`rounded-2xl p-6 transition-all duration-300 shadow-md border ${state.darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} `}>
-          {renderTabContent()}
-
-        <div className={`${state.darkMode ? 'bg-gray-800' : 'bg-white'} rounded-xl p-6 shadow-sm`}>
+        <div className={`rounded-2xl p-6 transition-all duration-300 shadow-md border ${
+          state.darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
+        }`}>
           {selectedTab === 'opportunities' && renderOpportunities()}
           {selectedTab === 'interviews' && renderInterviews()}
           {selectedTab === 'resources' && renderResources()}
           {selectedTab === 'mock' && renderMockInterviews()}
- main
         </div>
       </div>
     </div>

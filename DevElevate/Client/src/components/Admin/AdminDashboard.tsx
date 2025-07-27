@@ -60,7 +60,7 @@ type NewsArticle = {
 
 const AdminDashboard: React.FC = () => {
   const { state: authState, loadUsers, deleteUser } = useAuth();
-  const { state: globalState } = useGlobalState();
+  const { state: globalState, dispatch} = useGlobalState();
   const [activeTab, setActiveTab] = useState('overview');
   const [searchTerm, setSearchTerm] = useState('');
   const [showAddCourse, setShowAddCourse] = useState(false);
@@ -1509,8 +1509,7 @@ const AdminDashboard: React.FC = () => {
           {/* 🌙 Dark Mode Toggle Button */}
             <button
            
-            onClick={() => dispatch({ type: 'TOGGLE_DARK_MODE'
- })}
+            onClick={() => dispatch({ type: 'TOGGLE_DARK_MODE'})}
             className={`mt-2 px-4 py-2 rounded-lg font-medium transition-colors ${
               globalState.darkMode
                 ? 'bg-gray-700 text-white hover:bg-gray-600'
